@@ -1,5 +1,7 @@
 const inquirer = require('inquirer');
-const Employee = require('./lib/Employee.js');
+const Manager = require('./lib/Manager.js');
+const Engineer = require('./lib/Engineer.js');
+const Intern = require('./lib/Intern.js');
 
 const promptPortfolio = portfolioData => {
     if (!portfolioData) {
@@ -116,7 +118,8 @@ const promptPortfolio = portfolioData => {
             default: false
         }
     ])
-    .then(() => {
+    .then(userData => {
+        console.log('Im here')
         // if (userInfo.role === 'Manager') {
         //     return managerQuestion()
         // }
@@ -127,24 +130,25 @@ const promptPortfolio = portfolioData => {
         //     return internQuestion()
         // }
 
-        if (this.role === 'Manager') {
-        portfolioData.push(new Manager(name, id, email, role, officeNumber));
-            if (this.confirmAddEmployee) {
+        if (userData.role === 'Manager') {
+        portfolioData.push(new Manager(userData.name, userData.id, userData.email, userData.role, userData.officeNumber));
+        console.log(portfolioData)
+            if (userData.confirmAddEmployee) {
                 return promptPortfolio(portfolioData);
             } else {
                 return portfolioData;
             }
         }
-        else if (this.role === 'Engineer') {
-        portfolioData.push(new Engineer(name, id, email, role, gitHub));
-            if (this.confirmAddEmployee) {
+        else if (userData.role === 'Engineer') {
+        portfolioData.push(new Engineer(userData.name, userData.id, userData.email, userData.role, userData.gitHub));
+            if (userData.confirmAddEmployee) {
                 return promptPortfolio(portfolioData);
             } else {
                 return portfolioData;
             }
         }
         else if (this.role === 'Intern') {
-        portfolioData.push(new Intern(name, id, email, role, schoolName));
+        portfolioData.push(new Intern(userData.name, userData.id, userData.email, userData.role, userData.schoolName));
             if (this.confirmAddEmployee) {
                 return promptPortfolio(portfolioData);
             } else {
