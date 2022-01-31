@@ -1,4 +1,6 @@
 const inquirer = require('inquirer');
+const generatePage = require('./src/page-template')
+const {writeFile, copyFile} = require('./generate-HTML')
 const Manager = require('./lib/Manager.js');
 const Engineer = require('./lib/Engineer.js');
 const Intern = require('./lib/Intern.js');
@@ -161,3 +163,19 @@ const promptPortfolio = portfolioData => {
 
 
 promptPortfolio()
+    .then(portfolioData => {
+        return generatePage(portfolioData);
+    })
+    .then(pageHTML => {
+        return writeFile(pageHTML)
+    })
+    .then(writeFileResponse => {
+        console.log(writeFileResponse);
+        return copyFile();
+    })
+    .then(copyFileResponse => {
+        console.log(copyFileResponse);
+    })
+    .catch(err => {
+    console.log(err);
+    });
