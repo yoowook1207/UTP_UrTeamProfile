@@ -122,18 +122,10 @@ const promptPortfolio = portfolioData => {
     ])
     .then(userData => {
         console.log('Im here')
-        // if (userInfo.role === 'Manager') {
-        //     return managerQuestion()
-        // }
-        // else if (userInfo.role === 'Engineer') {
-        //     return engineerQuestion()
-        // }
-        // else if (userInfo.role === 'Intern') {
-        //     return internQuestion()
-        // }
-
         if (userData.role === 'Manager') {
-        portfolioData.push(new Manager(userData.name, userData.id, userData.email, userData.role, userData.officeNumber));
+            this.manager = new Manager(userData.name, userData.id, userData.email, userData.role, userData.officeNumber)
+            this.manager.getRole()
+        portfolioData.push(this.manager);
         console.log(portfolioData)
             if (userData.confirmAddEmployee) {
                 return promptPortfolio(portfolioData);
@@ -142,16 +134,22 @@ const promptPortfolio = portfolioData => {
             }
         }
         else if (userData.role === 'Engineer') {
-        portfolioData.push(new Engineer(userData.name, userData.id, userData.email, userData.role, userData.gitHub));
+            this.engineer = new Engineer(userData.name, userData.id, userData.email, userData.role, userData.gitHub)
+            this.engineer.getRole()
+        portfolioData.push(this.engineer);
+        console.log(portfolioData)
             if (userData.confirmAddEmployee) {
                 return promptPortfolio(portfolioData);
             } else {
                 return portfolioData;
             }
         }
-        else if (this.role === 'Intern') {
-        portfolioData.push(new Intern(userData.name, userData.id, userData.email, userData.role, userData.schoolName));
-            if (this.confirmAddEmployee) {
+        else if (userData.role === 'Intern') {
+            this.intern = new Intern(userData.name, userData.id, userData.email, userData.role, userData.schoolName)
+            this.intern.getRole()
+        portfolioData.push(this.intern);
+        console.log(portfolioData)
+            if (userData.confirmAddEmployee) {
                 return promptPortfolio(portfolioData);
             } else {
                 return portfolioData;
