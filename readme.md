@@ -11,7 +11,7 @@
   * [Installation](#installation)
   * [Usage](#usage)
   * [License](#license)
-  * [Contributing](#contributing)
+  * [Screenshot](#Screenshot)
   * [Tests](#tests)
   * [Questions](#questions)
   
@@ -28,9 +28,9 @@
   - MIT License https://choosealicense.com/licenses/mit/
   
 
-  ## Contributing
+  ## Screenshot
 
-  - N/A
+  ![alt text](https://github.com/yoowook1207/UTP_UrTeamProfile/blob/main/screenshot.png?raw=true)
 
   ## Tests
 
